@@ -2,9 +2,12 @@ package com.msvc.usuarios.msvc_usuarios.Controller;
 
 
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.msvc.usuarios.msvc_usuarios.Controller.configuration.Configuration;
 import com.msvc.usuarios.msvc_usuarios.models.Usuario;
 import com.msvc.usuarios.msvc_usuarios.services.interfaces.UsuarioInterface;
 
@@ -13,11 +16,11 @@ import com.msvc.usuarios.msvc_usuarios.services.interfaces.UsuarioInterface;
 public class UsuarioController {
 
     private final UsuarioInterface user;
-    private final methodsInterface methods;
+    private final Configuration cfg;
     
-    public UsuarioController( UsuarioInterface user, methodsInterface methods) {
+    public UsuarioController( UsuarioInterface user, Configuration cfg) {
         this.user = user;
-        this.methods = methods;
+        this.cfg = cfg;
     }
    
     @GetMapping("/list")
@@ -27,21 +30,21 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable long id) {
-        return methods.findUser(id);
+        return cfg.findUser(id);
     }
 
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody Usuario usuario) {
-        return ResponseEntity.ok().body(this.user.save(usuario));
+        return ResponseEntity.status(HttpStatus.CREATED).body(user.save(usuario));
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable long id, @RequestBody Usuario usuario) {
-        return methods.updateValidation(id);
+        return cfg.updateValidation(id, usuario);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
-        user.deleteById(id);
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable long id) {
+       return cfg.delete(id);
         
     }
 }
