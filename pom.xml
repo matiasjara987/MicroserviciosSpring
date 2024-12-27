@@ -6,7 +6,7 @@
 			<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<groupId>com.msvc.padre</groupId>
@@ -14,6 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
 		<module>msvc-usuarios</module>
+		<module>msvc-cursos</module>
 	</modules>
 	<name>msvc-padre</name>
 	<packaging>pom</packaging>

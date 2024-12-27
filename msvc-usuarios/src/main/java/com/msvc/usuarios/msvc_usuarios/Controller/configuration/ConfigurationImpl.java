@@ -3,10 +3,15 @@ package com.msvc.usuarios.msvc_usuarios.Controller.configuration;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
 import com.msvc.usuarios.msvc_usuarios.models.Usuario;
 import com.msvc.usuarios.msvc_usuarios.services.interfaces.UsuarioInterface;
 
+@Service
+@Primary
 public class ConfigurationImpl implements Configuration{
 
 @Autowired
