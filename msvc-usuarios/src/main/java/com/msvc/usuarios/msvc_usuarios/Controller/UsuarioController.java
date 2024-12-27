@@ -30,7 +30,7 @@ public class UsuarioController {
         return methods.findUser(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<?> create(@RequestBody Usuario usuario) {
         return ResponseEntity.ok().body(this.user.save(usuario));
     }
