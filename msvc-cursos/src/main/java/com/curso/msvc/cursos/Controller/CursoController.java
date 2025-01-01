@@ -2,6 +2,7 @@ package com.curso.msvc.cursos.Controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class CursoController {
     }
 
     @GetMapping("/list")
-    public List<Curso>  list() {
-        return service.findAll();
+    public ResponseEntity<List<Curso>>  list() {
+        return ResponseEntity.ok().body(service.findAll());
     }
 }
