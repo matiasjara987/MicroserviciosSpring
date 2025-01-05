@@ -20,7 +20,9 @@ public class CursoController {
     }
 
     @GetMapping("/list")
+    @Transactional(readOnly = true)
     public ResponseEntity<List<Curso>>  list() {
         return ResponseEntity.ok().body(service.findAll());
     }
+     
 }
