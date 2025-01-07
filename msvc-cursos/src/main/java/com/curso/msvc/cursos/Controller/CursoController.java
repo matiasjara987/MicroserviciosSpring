@@ -1,10 +1,12 @@
 package com.curso.msvc.cursos.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.curso.msvc.cursos.models.Curso;
@@ -25,5 +27,9 @@ public class CursoController {
     public ResponseEntity<List<Curso>>  list() {
         return ResponseEntity.ok().body(service.findAll());
     }
-     
+    @GetMapping("/list/{id}")
+    @Transactional(readOnly = true)
+    public Optional<Curso> findCursoById( @PathVariable Long id) {
+        return service.findById(id);
+    }    
 }
